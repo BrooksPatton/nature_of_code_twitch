@@ -26,7 +26,18 @@ function love.draw()
 end
 
 function love.update(dt)
-  local r = love.math.random(1, 20)
+  local r = monteCarloRandomNumber(1, 20)
 
   randomNumbers[r] = randomNumbers[r] + 1
+end
+
+function monteCarloRandomNumber(m, n)
+  while true do
+    local r1 = love.math.random(m, n)
+    local r2 = love.math.random(m, n)
+
+    if r2 * r2 <= r1 * r1 then
+      return r1
+    end
+  end
 end
